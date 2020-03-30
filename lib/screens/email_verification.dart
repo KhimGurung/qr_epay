@@ -56,6 +56,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
@@ -92,7 +94,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      SizedBox(height: 70.0,),
+                      SizedBox(height: height*0.09,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -213,7 +215,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20.0,),
                     ],
                   ),
                 ),
@@ -225,219 +226,71 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 decoration: BoxDecoration(
                     color: Colors.white
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: 20.0,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("1");
-                            },
-                            child: Text(
-                              '1',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: height*0.045, horizontal: 0.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _numberBtn("1"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("2"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("3"),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _numberBtn("4"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("5"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("6"),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _numberBtn("7"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("8"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("9"),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            height: 60.0,
+                            width: 80.0,
+                          ),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("0"),
+                          SizedBox(width: 10.0,),
+                          Container(
+                            height: 60.0,
+                            width: 80.0,
+                            child: FlatButton(
+                              onPressed: (){
+                                _deleteEmailVerificationCode();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                size: 27.0,
+                                color: Theme.of(context).primaryColor,
+                              )
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("2");
-                            },
-                            child: Text(
-                              '2',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("3");
-                            },
-                            child: Text(
-                              '3',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("4");
-                            },
-                            child: Text(
-                              '4',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("5");
-                            },
-                            child: Text(
-                              '5',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("6");
-                            },
-                            child: Text(
-                              '6',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("7");
-                            },
-                            child: Text(
-                              '7',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("8");
-                            },
-                            child: Text(
-                              '8',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("9");
-                            },
-                            child: Text(
-                              '9',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("0");
-                            },
-                            child: Text(
-                              '0',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _deleteEmailVerificationCode();
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                              size: 27.0,
-                              color: Theme.of(context).primaryColor,
-                            )
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 30.0,),
-                    _verifyBtn(context),
-                  ],
+                        ],
+                      ),
+                      _verifyBtn()
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -445,53 +298,51 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         )
     );
   }
-}
 
-Widget _verifyBtn(context){
-  return ButtonTheme(
-    height: 46.0,
-    minWidth: 269.0,
-    child: FlatButton(
-      color: Theme.of(context).primaryColor,
-      textColor: Colors.white,
-      disabledColor: Colors.grey,
-      disabledTextColor: Colors.black,
-      splashColor: Colors.blueAccent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(27.0),
+  Widget _numberBtn(String number){
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle
       ),
-      onPressed: () {
-        Navigator.pushNamed(context, '/create-pin');
-      },
-      child: Text(
-        "Verify",
-        style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.normal,
+      child: FlatButton(
+        onPressed: (){
+          _emailVerificationCode(number);
+        },
+        child: Text(
+          number,
+          style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: 27.0
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-Widget _floatingBtn(context){
-  return SizedBox(
-    height: 46.0,
-    width: MediaQuery.of(context).size.width / 1.5,
-    child: FloatingActionButton.extended(
-      elevation: 1.0,
-      onPressed: () {
-        // Add your onPressed code here!
-      },
-      label: Text(
-        'Verify',
-        style: TextStyle(
-            color: Colors.white,
-            fontSize: 16.0,
-            fontWeight: FontWeight.w600
+  Widget _verifyBtn(){
+    return ButtonTheme(
+      height: 46.0,
+      minWidth: 269.0,
+      child: FlatButton(
+        color: Theme.of(context).primaryColor,
+        textColor: Colors.white,
+        disabledColor: Colors.grey,
+        disabledTextColor: Colors.black,
+        splashColor: Colors.blueAccent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(27.0),
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/create-pin');
+        },
+        child: Text(
+          "Verify",
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.normal,
+          ),
         ),
       ),
-      backgroundColor: Theme.of(context).buttonColor,
-    ),
-  );
+    );
+  }
 }

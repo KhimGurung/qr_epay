@@ -33,7 +33,7 @@ void main() => runApp(MaterialApp(
   theme: ThemeData(
     primaryColor: Color(0xFFFFBE00),
     accentColor: Color(0xFFF3F5F9),
-    scaffoldBackgroundColor: Color(0xFFFFFFFF),
+    scaffoldBackgroundColor: Color(0xFFFAFAFA),
     backgroundColor: Color(0xFF2D31C6),
     buttonColor: Color(0xFFFFBE00),
     highlightColor: Color(0xFFFFBE00),

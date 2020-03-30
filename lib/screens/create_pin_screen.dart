@@ -56,6 +56,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
@@ -69,245 +70,82 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                 decoration: BoxDecoration(
                     color: Theme.of(context).backgroundColor
                 ),
-                child: Center(
+                child: Container(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        'Create PIN',
-                        style: TextStyle(
-                          fontSize: 28.0,
-                          color: Colors.white
-                        ),
-                      ),
-                      SizedBox(height: 20.0,),
-                      Container(
-                        width: 230.0,
-                        child: Text(
-                          'Keep this PIN. This PIN is required for login.',
-                          style: TextStyle(
-                              fontSize: 14.0,
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            'Create PIN',
+                            style: TextStyle(
+                              fontSize: 28.0,
                               color: Colors.white
+                            ),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
+                          SizedBox(height: 5.0,),
+                          Text(
+                            'This PIN is required for login.',
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.white
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 20.0,),
-                      Text(
-                        'Enter PIN',
-                        style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.white
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 10.0,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      SizedBox(height: height*0.05,),
+                      Column(
                         children: <Widget>[
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _firstCodeController,
-                              enabled: false,
-                              style: TextStyle(
+                          Text(
+                            'Enter PIN',
+                            style: TextStyle(
                                 fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
+                                color: Colors.white
                             ),
+                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(width: 20.0,),
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _secondCodeController,
-                              enabled: false,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20.0,),
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _thirdCodeController,
-                              enabled: false,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                border: InputBorder.none,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20.0,),
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _fourthCodeController,
-                              enabled: false,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                border: InputBorder.none,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
+                          SizedBox(height: 10.0,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              _numberInput(_firstCodeController),
+                              SizedBox(width: 20.0,),
+                              _numberInput(_secondCodeController),
+                              SizedBox(width: 20.0,),
+                              _numberInput(_thirdCodeController),
+                              SizedBox(width: 20.0,),
+                              _numberInput(_fourthCodeController),
+                            ],
                           ),
                         ],
                       ),
                       SizedBox(height: 20.0,),
-                      Text(
-                        'Confirm PIN',
-                        style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.white
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 10.0,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Column(
                         children: <Widget>[
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _firstCodeController,
-                              enabled: false,
-                              style: TextStyle(
+                          Text(
+                            'Confirm PIN',
+                            style: TextStyle(
                                 fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
+                                color: Colors.white
                             ),
+                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(width: 20.0,),
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _secondCodeController,
-                              enabled: false,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20.0,),
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _thirdCodeController,
-                              enabled: false,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                border: InputBorder.none,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20.0,),
-                          SizedBox(
-                            width: 52.0,
-                            height: 52.0,
-                            child: TextField(
-                              controller: _fourthCodeController,
-                              enabled: false,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                filled: true,
-                                border: InputBorder.none,
-                                fillColor: Color.fromRGBO(255, 255, 255, 0.1),
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
+                          SizedBox(height: 10.0,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              _numberInput(_firstCodeController),
+                              SizedBox(width: 20.0,),
+                              _numberInput(_secondCodeController),
+                              SizedBox(width: 20.0,),
+                              _numberInput(_thirdCodeController),
+                              SizedBox(width: 20.0,),
+                              _numberInput(_fourthCodeController),
+                            ],
                           ),
                         ],
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -319,219 +157,71 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
                 decoration: BoxDecoration(
                     color: Colors.white
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: 20.0,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("1");
-                            },
-                            child: Text(
-                              '1',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: height*0.045, horizontal: 0.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _numberBtn("1"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("2"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("3"),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _numberBtn("4"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("5"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("6"),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _numberBtn("7"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("8"),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("9"),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            height: 60.0,
+                            width: 80.0,
+                          ),
+                          SizedBox(width: 10.0,),
+                          _numberBtn("0"),
+                          SizedBox(width: 10.0,),
+                          Container(
+                            height: 60.0,
+                            width: 80.0,
+                            child: FlatButton(
+                              onPressed: (){
+                                _deleteEmailVerificationCode();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                size: 27.0,
+                                color: Theme.of(context).primaryColor,
+                              )
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("2");
-                            },
-                            child: Text(
-                              '2',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("3");
-                            },
-                            child: Text(
-                              '3',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("4");
-                            },
-                            child: Text(
-                              '4',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("5");
-                            },
-                            child: Text(
-                              '5',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("6");
-                            },
-                            child: Text(
-                              '6',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("7");
-                            },
-                            child: Text(
-                              '7',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("8");
-                            },
-                            child: Text(
-                              '8',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("9");
-                            },
-                            child: Text(
-                              '9',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _emailVerificationCode("0");
-                            },
-                            child: Text(
-                              '0',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 27.0
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Container(
-                          height: 60.0,
-                          width: 100.0,
-                          child: FlatButton(
-                            onPressed: (){
-                              _deleteEmailVerificationCode();
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                              size: 27.0,
-                              color: Theme.of(context).primaryColor,
-                            )
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 30.0,),
-                    _createBtn(context),
-                  ],
+                        ],
+                      ),
+                      _createBtn(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -539,31 +229,80 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
         )
     );
   }
-}
 
-Widget _createBtn(context){
-  return ButtonTheme(
-    height: 46.0,
-    minWidth: 269.0,
-    child: FlatButton(
-      color: Theme.of(context).primaryColor,
-      textColor: Colors.white,
-      disabledColor: Colors.grey,
-      disabledTextColor: Colors.black,
-      splashColor: Colors.blueAccent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(27.0),
-      ),
-      onPressed: () {
-        Navigator.pushNamed(context, '/connect-bank');
-      },
-      child: Text(
-        "Create",
-        style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.normal,
+  Widget _numberInput(TextEditingController textEditingController){
+    return SizedBox(
+      width: 45.0,
+      height: 45.0,
+      child: Center(
+        child: TextField(
+          controller: textEditingController,
+          enabled: false,
+          style: TextStyle(
+            fontSize: 16.0,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+          autofocus: false,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white.withOpacity(0.1),
+            disabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
+
+  Widget _numberBtn(String number){
+    return Container(
+      decoration: BoxDecoration(
+          shape: BoxShape.circle
+      ),
+      child: FlatButton(
+        onPressed: (){
+          _emailVerificationCode(number);
+        },
+        child: Text(
+          number,
+          style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: 27.0
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _createBtn(){
+    return ButtonTheme(
+      height: 46.0,
+      minWidth: 269.0,
+      child: FlatButton(
+        color: Theme.of(context).primaryColor,
+        textColor: Colors.white,
+        disabledColor: Colors.grey,
+        disabledTextColor: Colors.black,
+        splashColor: Colors.blueAccent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(27.0),
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/connect-bank');
+        },
+        child: Text(
+          "Create",
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+

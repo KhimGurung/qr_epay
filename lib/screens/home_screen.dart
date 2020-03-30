@@ -15,217 +15,231 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    var mediaQuery = MediaQuery.of(context);
-
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Stack(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Flexible(
-                flex: 2,
-                fit: FlexFit.tight,
-                child: Container(
+      body: _body(),
+      bottomNavigationBar: _bottomNavigation(),
+    );
+  }
+
+  Widget _body(){
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          pinned: true,
+          expandedHeight: 120,
+          onStretchTrigger: () {
+            // Function callback for stretch
+            return;
+          },
+          backgroundColor: Theme.of(context).backgroundColor,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.settings),
+              color: Colors.white,
+              tooltip: 'Settings',
+              onPressed: () {
+                print('hello');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.notifications),
+              color: Colors.white,
+              tooltip: 'Notification',
+              onPressed: () {
+                Navigator.pushNamed(context, '/notification');
+              },
+            ),
+          ],
+          flexibleSpace: FlexibleSpaceBar(
+            centerTitle: false,
+            title: Text(
+              "Hello, James",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Theme.of(context).primaryColor
+              ),
+            ),
+            titlePadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
+          ),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            Stack(
+              children: [
+                Container(
+                  height: 400,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).backgroundColor,
+                      color: Theme.of(context).backgroundColor
                   ),
-                  child: Column(
-                    children: <Widget>[
-                      AppBar(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0.0,
-                        actions: <Widget>[
-                          IconButton(
-                            icon: const Icon(Icons.settings),
-                            color: Colors.white,
-                            tooltip: 'Settings',
-                            onPressed: () {
-                              print('hello');
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.notifications),
-                            color: Colors.white,
-                            tooltip: 'Notification',
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/notification');
-                            },
+                  transform: Matrix4.translationValues(0.0, -400.0, 0.0),
+                ),
+                Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).backgroundColor
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 40.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                  children: <Widget>[
+                                    Text(
+                                      'Your balance is:',
+                                      style: TextStyle(
+                                          color: Colors.white
+                                      ),
+                                    ),
+                                    SizedBox(height: 5.0,),
+                                    Text(
+                                      '120,00 €',
+                                      style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 24.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                _buildDigitalReceiptButton(),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(25.0, 0.0, 0.0, 30.0),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                          'Hello, Khim',
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                      ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(25.0, 0.0, 20.0, 0.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  'Your balance is:',
-                                  style: TextStyle(
-                                      color: Colors.white
-                                  ),
-                                ),
-                                SizedBox(height: 5.0,),
-                                Text(
-                                  '120,00 €',
-                                  style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 24.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            _buildDigitalReceiptButton(),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 4,
-                fit: FlexFit.tight,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFAFAFA)
-                  ),
-                    child: Column(
+                    ),
+                    Stack(
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 0.0),
-                          child: _buildActions(),
-                        ),
-                        SizedBox(height: 15.0,),
-                        Divider(
-                            thickness:4.0,
-                            color: Theme.of(context).dividerColor,
-                        ),
-                        SizedBox(height: 15.0,),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'Recent Transactions',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14.0,
-                                    color: Theme.of(context).secondaryHeaderColor,
-                                ),
-                              ),
-                              Icon(
-                                  Icons.trending_flat,
-                                  color: Color(0xFF929292),
-                              )
-                            ],
+                        Container(
+                          height: 22,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).backgroundColor
                           ),
                         ),
-                        SizedBox(height: 15.0,),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: transactions.asMap().entries.map(
-                                      (MapEntry map)=> _buildTransaction(map.key)
-                              ).toList()
-                          ),
-                        ),
+                        Container(
+                          child: _floatingPayButton(),
+                        )
                       ],
-                    )
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 15.0),
+                      child: _buildActions(),
+                    ),
+                    Divider(
+                      thickness:4.0,
+                      color: Theme.of(context).dividerColor,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Recent Transactions',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14.0,
+                              color: Theme.of(context).secondaryHeaderColor,
+                            ),
+                          ),
+                          Icon(
+                            Icons.trending_flat,
+                            color: Color(0xFF929292),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 15.0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: transactions.asMap().entries.map(
+                                  (MapEntry map)=> _buildTransaction(map.key)
+                          ).toList()
+                      ),
+                    ),
+                    // ListTiles++
+                  ],
                 ),
-              ),
-            ],
-          ),
-          _floatingPayButton(mediaQuery)
-        ],
-      ),
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.white
+              ],
+            ),
+          ]),
         ),
-        child: BottomNavigationBar(
-          currentIndex: _currentTab,
-          onTap: (int index) async {
-            setState(() {
-              _currentTab = index;
-            });
+      ],
+    );
+  }
 
-            if(index == 3){
-              await showMenu<String>(
+  Widget _bottomNavigation(){
+    return Theme(
+      data: Theme.of(context).copyWith(
+          canvasColor: Colors.white
+      ),
+      child: BottomNavigationBar(
+        currentIndex: _currentTab,
+        onTap: (int index) async {
+          setState(() {
+            _currentTab = index;
+          });
+
+          if(index == 3){
+            await showMenu<String>(
               context: context,
               position: RelativeRect.fromLTRB(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height-210, 0.0, 0.0),
               items: <PopupMenuItem<String>>[
                 new PopupMenuItem<String>(
-                    child: RaisedButton(
-                      onPressed: (){
-                        Navigator.pushNamed(context, '/qr-code');
-                      },
-                      child: Text('My QR code'),
-                    ),
+                  child: RaisedButton(
+                    onPressed: (){
+                      Navigator.pushNamed(context, '/qr-code');
+                    },
+                    child: Text('My QR code'),
+                  ),
                 ),
                 new PopupMenuItem<String>(
-                child: const Text('Scan digital receipt'), value: 'test2'),
+                    child: const Text('Scan digital receipt'), value: 'test2'),
               ],
               elevation: 8.0,
-              );
-            }
-          },
-          elevation: 0.0,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.account_balance_wallet,
-                  size: 30.0,
-                  color: Colors.grey,
-                ),
-                title: Text('Wallet')
-            ),
-            BottomNavigationBarItem(
-              icon: Image(
-                image: AssetImage('assets/images/pfand.png'),
-                height: 30.0,
-              ),
-              title: Text('PFand'),
-            ),
-            BottomNavigationBarItem(
+            );
+          }
+        },
+        elevation: 0.0,
+        items: [
+          BottomNavigationBarItem(
               icon: Icon(
-                Icons.shopping_cart,
+                Icons.account_balance_wallet,
                 size: 30.0,
                 color: Colors.grey,
               ),
-              title: Text('Shop'),
+              title: Text('Wallet')
+          ),
+          BottomNavigationBarItem(
+            icon: Image(
+              image: AssetImage('assets/images/pfand.png'),
+              height: 30.0,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.more_horiz,
-                size: 30.0,
-                color: Colors.grey,
-              ),
-              title: Text('Shop'),
+            title: Text('PFand'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_cart,
+              size: 30.0,
+              color: Colors.grey,
             ),
-          ],
-        ),
+            title: Text('Shop'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.more_horiz,
+              size: 30.0,
+              color: Colors.grey,
+            ),
+            title: Text('Shop'),
+          ),
+        ],
       ),
     );
   }
@@ -260,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _floatingPayButton(MediaQueryData mediaQuery) {
+  Widget _floatingPayButton() {
     Future _scanQR() async {
       try{
         String qrResult = await BarcodeScanner.scan();
@@ -285,76 +299,71 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return Align(
       alignment: Alignment.topRight,
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: mediaQuery.size.height / 3.6,
-        ),
-        child: Container(
-            padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 44,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        offset: Offset(0.0, 2.0),
-                        blurRadius: 6.0,
-                      )
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Flexible(
-                          flex: 1,
-                          fit: FlexFit.tight,
-                          child: FlatButton(
-                            splashColor: Colors.blueAccent,
-                            onPressed: () {
-                              _scanQR();
-                            },
-                            child: Text(
-                              "QR Pay",
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16.0,
-                                color: Theme.of(context).secondaryHeaderColor,
-                              ),
+      child: Container(
+          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 44,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(0.0, 2.0),
+                      blurRadius: 6.0,
+                    )
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Flexible(
+                        flex: 1,
+                        fit: FlexFit.tight,
+                        child: FlatButton(
+                          splashColor: Colors.blueAccent,
+                          onPressed: () {
+                            _scanQR();
+                          },
+                          child: Text(
+                            "QR Pay",
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16.0,
+                              color: Theme.of(context).secondaryHeaderColor,
                             ),
                           ),
                         ),
-                        VerticalDivider(),
-                        Flexible(
-                          flex: 1,
-                          fit: FlexFit.tight,
-                          child: FlatButton(
-                            splashColor: Colors.blueAccent,
-                            onPressed: () {
-                              /*...*/
-                            },
-                            child: Text(
-                              "NFC Pay",
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16.0,
-                                color: Theme.of(context).secondaryHeaderColor,
-                              ),
+                      ),
+                      VerticalDivider(),
+                      Flexible(
+                        flex: 1,
+                        fit: FlexFit.tight,
+                        child: FlatButton(
+                          splashColor: Colors.blueAccent,
+                          onPressed: () {
+                            /*...*/
+                          },
+                          child: Text(
+                            "NFC Pay",
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16.0,
+                              color: Theme.of(context).secondaryHeaderColor,
                             ),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            )
-        ),
+                ),
+              )
+            ],
+          )
       ),
     );
   }
