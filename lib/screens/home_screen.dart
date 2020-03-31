@@ -42,13 +42,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 print('hello');
               },
             ),
-            IconButton(
-              icon: const Icon(Icons.notifications),
-              color: Colors.white,
-              tooltip: 'Notification',
-              onPressed: () {
-                Navigator.pushNamed(context, '/notification');
-              },
+            Stack(
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.notifications_none),
+                  color: Colors.white,
+                  tooltip: 'Notification',
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/notification');
+                  },
+                ),
+                Positioned(
+                  right:7,
+                  top: 11,
+                  child: Container(
+                    height: 16,
+                    width: 16,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
+                    child: Center(
+                      child: Text(
+                        "99",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 9.0
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ],
           flexibleSpace: FlexibleSpaceBar(
