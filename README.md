@@ -1,2 +1,2 @@
-# speed_epay
+# qr_epay
 mobile payment application
